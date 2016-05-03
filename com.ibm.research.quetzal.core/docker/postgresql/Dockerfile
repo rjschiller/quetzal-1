@@ -16,9 +16,9 @@ RUN echo debconf shared/accepted-oracle-license-v1-1 select true | \
 
 USER postgres
 
-# This image does nothing much other than set a volume where the data directory # is: i.e., where the nt file sits.  For now the assumption is that
-# its unzipped and it exists in the /data dir.  All temporary files get written 
-# to that directory.
+# This image does nothing much other than set a volume where the data directory # is: i.e., where the nt file sits.  
+# For now the assumption is that its unzipped and it exists in the /data dir.  All temporary files get written to 
+# that directory.
 
 WORKDIR /data
 
@@ -26,3 +26,8 @@ RUN /etc/init.d/postgresql start \
 && git clone https://github.com/Quetzal-RDF/quetzal \
 && cd /data/quetzal/com.ibm.research.quetzal.core/ &&  mvn verify -DskipTests
 
+# Note to build this docker image and get it running you need to execute the following (it needs to be changed):
+#     docker --label=[tag=ibmresearch/quetzal_postgres] build \
+#            https://raw.githubusercontent.com/rjschiller/quetzal/master/com.ibm.research.quetzal.core/docker/postgresql/Dockerfile 
+# *** Then tag the docker image
+#     docker tag the image created above> ibmresearch/quetzal_postgres
