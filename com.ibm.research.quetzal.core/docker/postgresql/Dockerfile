@@ -1,6 +1,6 @@
 FROM ubuntu
 
-MAINTAINER Kavitha Srinivas <ksrinivs@us.ibm.com>
+MAINTAINER Richard Schiller <RichardJSchiller@gmail.com>
  
 RUN apt-get update && apt-get install -y python-software-properties software-properties-common postgresql postgresql-client postgresql-contrib \
 && apt-get install -y default-jdk \
@@ -36,3 +36,8 @@ RUN /etc/init.d/postgresql start \
 # to connect to this afterward you follow this command
 # docker images
 # docker run -it <container id> /bin/bash
+
+# This is how it is launched:
+# docker --label=[tag=ibmresearch/quetzal_postgres] build https://raw.githubusercontent.com/rjschiller/quetzal/master/com.ibm.research.quetzal.core/docker/postgresql/Dockerfile
+# tag the docker image
+#     docker tag <the image from above> ibmresearch/quetzal_postgres
